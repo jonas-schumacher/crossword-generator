@@ -6,8 +6,8 @@ Monte Carlo Tree Search (MCTS).
 A good overview about the project can be found in this 
 [blogpost](http://schumacher.pythonanywhere.com/udacity/crossword).
 
-![crossword_empty](readme/udacity_crossword_empty.png)
-![crossword_filled](readme/udacity_crossword.png)
+![screenshot empty crossword](readme/udacity_crossword_empty.png)
+![screenshot filled crossword](readme/udacity_crossword.png)
 
 ## Quickstart
 
