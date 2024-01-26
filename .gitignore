@@ -1,0 +1,6 @@
+.idea/*
+data_input/
+data_output/
+dist/
+src/crossword_generator.egg-info/
+tmp/
