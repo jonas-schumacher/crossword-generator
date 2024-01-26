@@ -6,38 +6,55 @@ Monte Carlo Tree Search (MCTS).
 A good overview about the project can be found in this 
 [blogpost](http://schumacher.pythonanywhere.com/udacity/crossword).
 
-![empty](readme/udacity_crossword_empty.png)
-![filled](readme/udacity_crossword.png)
+![crossword_empty](readme/udacity_crossword_empty.png)
+![crossword_filled](readme/udacity_crossword.png)
 
 ## Quickstart
 
-### Option A - pip package:
-1. Create and activate a virtual environment based on Python >= 3.8
-2. Install package: `pip install mcts_crossword_creator`
+### Installation:
+1. Create and activate a virtual environment based on Python >= 3.8 
+2. Install crossword_generator package: 
+```
+pip install crossword_generator
+```
+
+### Generate Demo Crossword:
+With your virtual environment activated do one of the following (3 equivalent options):
+1. Call application directly:
+```
+crossword
+```
+2. Execute package: 
+```
+python -m crossword_generator
+```
 3. In a python shell or your own script:
 ```
-from mcts_crossword_creator import generate_crossword
-generate_crossword()
+>>> from mcts_crossword_creator import generate_crossword
+>>> generate_crossword()
 ````
-### Option B - cloned repository:
-1. `git clone` this repository
-2. Create and activate a virtual environment based on Python >= 3.8
-3. Move into the root directory of the repository 
-4. Install requirements: `pip install -r requirements.txt`
-5. Run main script: `python mcts_crossword_creator/optimizer.py`
 
 ## Examples
-crossword --path_to_layout "src/crossword_generator/sample_input/layout_12_5_udacity_empty.csv"
-crossword --path_to_layout "src/crossword_generator/sample_input/layout_12_5_udacity_filled.csv"
-crossword --path_to_layout "src/crossword_generator/sample_input/layout_12_5_udacity_empty.csv" --path_to_words "src/crossword_generator/sample_input/words_udacity.csv"
 
-Create a 12x5 crossword (shown on top of this page) with words from a CSV file 
-- Option A: `generate_crossword(path_to_layout="crossword_input/layout_12_5_udacity_empty.csv", path_to_words="crossword_input/words_udacity.csv")`
-- Option B: `python mcts_crossword_creator/optimizer.py --path_to_layout "crossword_input/layout_12_5_udacity_empty.csv" --path_to_words "crossword_input/words_udacity.csv"`
+A: Create a 12x5 crossword (shown on top of this page) with words from a CSV file 
+- From within your code:
+```
+generate_crossword(path_to_layout="crossword_input/layout_12_5_udacity_empty.csv", path_to_words="crossword_input/words_udacity.csv")
+```
+- From the command-line:
+```
+crossword --path_to_layout "crossword_input/layout_12_5_udacity_empty.csv" --path_to_words "crossword_input/words_udacity.csv"
+```
 
 Create a 15x15 American Style crossword based on all English words from NLTK corpus:
-- Option A: `generate_crossword(path_to_layout="crossword_input/layout_15_15.csv")` 
-- Option B: `python mcts_crossword_creator/optimizer.py --path_to_layout "crossword_input/layout_15_15.csv"`
+- From within your code:
+```
+generate_crossword(path_to_layout="crossword_input/layout_15_15.csv")
+```
+- From the command-line:
+```
+crossword --path_to_layout "crossword_input/layout_15_15.csv"
+```
 
 ## Arguments
 Here's a list of arguments for `generate_crossword()` you might want to play with:
