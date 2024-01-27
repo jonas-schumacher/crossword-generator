@@ -7,6 +7,7 @@ from typing import List, Dict, Any
 
 import numpy as np
 import pandas as pd
+import nltk
 from nltk.corpus import words as nltk_words
 
 from crossword_generator.config import Constants
@@ -110,6 +111,7 @@ class DictionaryWordHandler(WordHandler):
         List[str]
 
         """
+        nltk.download("words")
         words = nltk_words.words()
 
         return words
