@@ -6,20 +6,23 @@ Monte Carlo Tree Search (MCTS).
 A good overview about the project can be found in this 
 [blogpost](http://schumacher.pythonanywhere.com/udacity/crossword).
 
-![screenshot empty crossword](readme/udacity_crossword_empty.png)
-![screenshot filled crossword](readme/udacity_crossword.png)
+![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/readme/udacity_crossword_empty.png)
+![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/readme/udacity_crossword.png)
 
 ## Quickstart
 
-### Installation:
+### Install package:
 1. Create and activate a virtual environment based on Python >= 3.8 
 2. Install crossword_generator package: 
 ```
 pip install crossword_generator
 ```
 
-### Generate Demo Crossword:
-With your virtual environment activated do one of the following (3 equivalent options):
+### Generate crossword with default settings:
+You can generate a crossword without providing any arguments.
+This will fill a 4x5 layout without any black squares using words from an English dictionary. 
+
+To do so, activate your virtual environment and chose one of the following (equivalent) options:
 1. Call application directly:
 ```
 crossword
@@ -28,62 +31,92 @@ crossword
 ```
 python -m crossword_generator
 ```
-3. In a python shell or your own script:
+3. Run the main function in a python shell or your own script:
 ```
->>> from mcts_crossword_creator import generate_crossword
+>>> from crossword_generator import generate_crossword
 >>> generate_crossword()
 ````
 
+For the next examples I assume you are using the first option to interact with the package.
+
 ## Examples
+- To get started and see which input formats are required, you can download some sample data from the 
+[this directory](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input).
+- Let's assume you have downloaded all files into a directory called "crossword_input".
 
-A: Create a 12x5 crossword (shown on top of this page) with words from a CSV file 
-- From within your code:
+### A: Use your own layouts
+
+- In order to use your own layouts, you will need to set argument 
+`path_to_layout` to a CSV file on your local machine. 
+- the CSV file must have an index column and a header row
+- potential letters are marked with "_" (underscore)
+- black squares are marked with "" (empty)
+
+Fill an 
+[empty 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_5_12.csv):
 ```
-generate_crossword(path_to_layout="crossword_input/layout_12_5_udacity_empty.csv", path_to_words="crossword_input/words_udacity.csv")
-```
-- From the command-line:
-```
-crossword --path_to_layout "crossword_input/layout_12_5_udacity_empty.csv" --path_to_words "crossword_input/words_udacity.csv"
+crossword --path_to_layout "crossword_input/layout_5_12.csv"
 ```
 
-Create a 15x15 American Style crossword based on all English words from NLTK corpus:
-- From within your code:
+Fill a 
+[partially filled 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_5_12_partially_filled.csv):
 ```
-generate_crossword(path_to_layout="crossword_input/layout_15_15.csv")
+crossword --path_to_layout "crossword_input/layout_5_12_partially_filled.csv"
 ```
-- From the command-line:
+
+Fill an entire NYT-style
+[15x15 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_15_15.csv):
+
 ```
 crossword --path_to_layout "crossword_input/layout_15_15.csv"
 ```
 
-## Arguments
-Here's a list of arguments for `generate_crossword()` you might want to play with:
-- *path_to_layout*
-    - read an existing grid layout from CSV file
-    - the CSV file must have an index column and a header row
-    - potential letters are marked with "_" (underscore)
-    - black squares are marked with "" (empty)
-- *num_rows & num_cols*
-    - number of rows / columns a new layout should have
-    - will only be considered if path_to_layout is None
-- *path_to_words*
-    - read words from all CSV files that follow the pattern specified in "path_to_words"
-    - the CSV Files must contain a column named "answer" from which the worsd will be read
-    - If no path is given, words are read from an English dictionary
-- *max_num_words*
-    - Limits the number of words to improve runtime
-- *max_mcts_iterations*
-    - Sets the maximum number of MCTS iterations
-    - Can be increased to get a better solution or decreased to improve runtime
-- *random_seed*
-    - Seed to initialize the random number generator
-    - Change this to get different solutions
-- *output_path*
-    - If provided, save the final grid and a summary of the MCTS to disk
+Of course, you can also provide arguments from within your code:
+```
+generate_crossword(
+  path_to_layout="crossword_input/layout_15_15.csv",
+)
+```
+
+### B: Use your own words
+
+- In order to use your own set of words, you will need to set argument 
+`path_to_words` to a CSV file (or pattern of CSV files) on your local machine.
+- the CSV file(s) must contain a column named "answer" with the relevant words
+
+Fill an 
+[empty 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_5_12.csv)
+with [words from a list](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/words_example.csv)
+```
+crossword --path_to_layout "crossword_input/layout_5_12.csv" --path_to_words "crossword_input/words_example.csv"
+```
+
+Again, you can do the same from within your code:
+```
+generate_crossword(
+  path_to_layout="crossword_input/layout_5_12.csv",
+  path_to_words="crossword_input/words_example.csv",
+)
+```
+
+
+### C: Other arguments you might want to play with:
+- *num_rows & num_cols [int]*
+    - number of rows / columns the layout should have
+    - will only be considered if `path_to_layout` is not specified
+- *max_num_words [int]*
+    - limits the number of words to improve runtime
+- *max_mcts_iterations [int]*
+    - sets the maximum number of MCTS iterations
+    - can be increased to get a better solution or decreased to improve runtime
+- *random_seed [int]*
+    - change the seed to obtain different filled crosswords
+- *output_path [str]*
+    - if provided, save the final grid and a summary as CSV files into the provided directory
 
 ## Modules
 - **optimizer.py**
-  - script that runs the crossword creator = `generate_crossword()`
+  - script that contains the main function `generate_crossword()`
 - **layout_handler.py**
   - Provides the layout that will later be filled with words
   - `NewLayoutHandler`: creates a new layout from scratch 
@@ -103,15 +136,13 @@ Here's a list of arguments for `generate_crossword()` you might want to play wit
     - Simulation / Rollout
     - Backpropagation
 
-## References
+## References & Dependencies
 - The MCTS implementation in `tree_search.py` is based on the algorithm provided by [pbsinclair42](https://github.com/pbsinclair42/MCTS),
    which I adapted in several ways:
   - Convert from 2-player to 1-player domain
   - Adjust reward function + exploration term
   - Add additional methods to analyze the game tree
-  - Use PEP 8 Code Style
-
-## Dependencies
+  - Use PEP 8 code style
 - Have a look at `pyproject.toml` for a list of all required and optional dependencies
 - Python >= 3.8
 - Required packages
