@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crossword-generator"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generate crosswords using Monte Carlo Tree Search (MCTS)"
 readme = "README.md"
 authors = [{ name = "Jonas Schumacher", email = "jonas.schumacher@tu-dortmund.de" }]
