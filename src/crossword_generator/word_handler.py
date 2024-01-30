@@ -155,7 +155,7 @@ class FileWordHandler(WordHandler):
 
         words = set.union(
             *[
-                set(pd.read_csv(current_path)[Constants.WORD_COL_NAME].values)
+                set(pd.read_csv(current_path, sep=None, engine="python")[Constants.WORD_COL_NAME].values)
                 for current_path in paths_to_clues
             ]
         )

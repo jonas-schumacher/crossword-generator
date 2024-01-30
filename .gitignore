@@ -1,4 +1,6 @@
 .idea/*
+crossword_input/
+crossword_output/
 data_input/
 data_output/
 dist/

@@ -371,7 +371,9 @@ class ExistingLayoutHandler(LayoutHandler):
         """
         layout = pd.read_csv(
             path_to_existing_layout,
+            sep=None,
             index_col=0,
+            engine="python",
             keep_default_na=False,
         )
 

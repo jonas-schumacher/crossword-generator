@@ -139,8 +139,9 @@ def generate_crossword(
             print(f"Persist results to: {output_path}")
             now = pd.Timestamp.now().strftime("%Y_%m_%d_%H_%M_%S")
             Path(output_path).mkdir(parents=True, exist_ok=True)
-            final_statistics.to_csv(f"{output_path}/{now}_{solved}_statistics.csv")
-            final_grid.to_csv(f"{output_path}/{now}_{solved}_layout.csv")
+            for lang, sep in zip(["en", "de"], [",", ";"]):
+                final_statistics.to_csv(f"{output_path}/{now}_statistics_{lang}.csv", sep=sep)
+                final_grid.to_csv(f"{output_path}/{now}_layout_{lang}.csv", sep=sep)
 
         # Optionally add some more blocks to the layout after each unsuccessful attempt:
         if DefaultArguments.NUM_BLOCKS_TO_ADD_IF_UNSUCCESSFUL > 0:

@@ -5,8 +5,8 @@ Monte Carlo Tree Search (MCTS).
 - A good overview about the project can be found in this [blog post](http://schumacher.pythonanywhere.com/udacity/crossword).
 - The pip package can be found on [PyPI](https://pypi.org/project/crossword-generator)
 
-![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/readme/udacity_crossword_empty.png)
-![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/readme/udacity_crossword.png)
+![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/images/layout_5_12_empty.png)
+![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/images/layout_5_12_filled.png)
 
 ## Quickstart
 
@@ -39,9 +39,12 @@ python -m crossword_generator
 For the next examples I assume you are using the first option to interact with the package.
 
 ## Examples
-- To get started and see which input formats are required, you can download some sample data from the 
-[this directory](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input).
-- Let's assume you have downloaded all files into a directory called "crossword_input".
+- To get started and see which input formats are required, you can download some
+[english](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_en)
+(comma-separated) or
+[german](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_de)
+(semicolon-separated) sample data.
+- Let's assume you have downloaded the sample files into a directory called "crossword_input" inside your working directory.
 
 ### A: Use your own layouts
 
@@ -52,28 +55,28 @@ For the next examples I assume you are using the first option to interact with t
 - black squares are marked with "" (empty)
 
 Fill an 
-[empty 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_5_12.csv):
+[empty 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_en/layout_5_12_empty.csv):
 ```
-crossword --path_to_layout "crossword_input/layout_5_12.csv"
+crossword --path_to_layout "crossword_input/layout_5_12_empty.csv"
 ```
 
 Fill a 
-[partially filled 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_5_12_partially_filled.csv):
+[prefilled 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_en/layout_5_12_prefilled.csv):
 ```
-crossword --path_to_layout "crossword_input/layout_5_12_partially_filled.csv"
+crossword --path_to_layout "crossword_input/layout_5_12_prefilled.csv"
 ```
 
 Fill an entire NYT-style
-[15x15 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_15_15.csv):
+[15x15 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_en/layout_15_15_empty.csv):
 
 ```
-crossword --path_to_layout "crossword_input/layout_15_15.csv"
+crossword --path_to_layout "crossword_input/layout_15_15_empty.csv"
 ```
 
 Of course, you can also provide arguments from within your code:
 ```
 generate_crossword(
-  path_to_layout="crossword_input/layout_15_15.csv",
+  path_to_layout="crossword_input/layout_15_15_empty.csv",
 )
 ```
 
@@ -84,17 +87,17 @@ generate_crossword(
 - the CSV file(s) must contain a column named "answer" with the relevant words
 
 Fill an 
-[empty 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/layout_5_12.csv)
-with [words from a list](https://github.com/jonas-schumacher/crossword-generator/tree/main/src/crossword_generator/sample_input/words_example.csv)
+[empty 5x12 layout](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_en/layout_5_12_empty.csv)
+with [words from a list](https://github.com/jonas-schumacher/crossword-generator/tree/main/sample_input_en/sample_words.csv)
 ```
-crossword --path_to_layout "crossword_input/layout_5_12.csv" --path_to_words "crossword_input/words_example.csv"
+crossword --path_to_layout "crossword_input/layout_5_12_empty.csv" --path_to_words "crossword_input/sample_words.csv"
 ```
 
 Again, you can do the same from within your code:
 ```
 generate_crossword(
-  path_to_layout="crossword_input/layout_5_12.csv",
-  path_to_words="crossword_input/words_example.csv",
+  path_to_layout="crossword_input/layout_5_12_empty.csv",
+  path_to_words="crossword_input/sample_words.csv",
 )
 ```
 
