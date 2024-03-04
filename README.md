@@ -2,7 +2,7 @@
 
 This package provides a pure Python implementation for generating crosswords using
 Monte Carlo Tree Search (MCTS).
-- A good overview about the project can be found in this [blog post](http://schumacher.pythonanywhere.com/udacity/crossword).
+- A good overview about the project can be found in this [blog post](http://schumacher.pythonanywhere.com/homepage/crossword).
 - The pip package can be found on [PyPI](https://pypi.org/project/crossword-generator)
 
 ![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/images/layout_5_12_empty.png)
@@ -14,7 +14,7 @@ Monte Carlo Tree Search (MCTS).
 1. Create and activate a virtual environment based on Python >= 3.8 
 2. Install crossword_generator package: 
 ```
-pip install crossword_generator
+pip install crossword-generator
 ```
 
 ### B: Generate crossword with default settings:
@@ -152,3 +152,7 @@ generate_crossword(
   - pandas>=1.4.0
   - numpy>=1.22.0
   - tqdm>=4.41.0
+
+## Future work
+- Add a python module that creates questions for given answers using NLP techniques
+- Add a graphical user interface (GUI)
