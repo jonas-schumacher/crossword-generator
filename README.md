@@ -2,7 +2,8 @@
 
 This package provides a pure Python implementation for generating crosswords using
 Monte Carlo Tree Search (MCTS).
-- A good overview about the project can be found in this [blog post](http://schumacher.pythonanywhere.com/homepage/crossword).
+- A general overview about the project can be found in this [blog post](http://schumacher.pythonanywhere.com/homepage/crossword).
+- If you want to understand the MCTS implementation in more detail, I recommend this [code deep dive on Medium](https://medium.com/@jonas.schumacher/generate-your-own-crosswords-using-single-player-mcts-3bf6bceeea40).
 - The pip package can be found on [PyPI](https://pypi.org/project/crossword-generator)
 
 ![screenshot filled crossword](https://github.com/jonas-schumacher/crossword-generator/raw/main/images/layout_5_12_empty.png)
